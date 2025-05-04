@@ -15,13 +15,13 @@ with open('random_forest_model.pkl', 'rb') as f:
 
 # App title
 st.title("🌼 Music Recommendation")
-st.write("Enter the question of music type:")
+st.write("Choose your music preference:")
 
-# Input fields
-sepal_length = st.slider("Sepal Length (cm)", 1, 2, 3, 4, 5, 6)
-sepal_width = st.slider("Sepal Width (cm)", 1, 2, 3, 4, 5, 6)
-petal_length = st.slider("Petal Length (cm)", 1, 2, 3, 4, 5, 6)
-petal_width = st.slider("Petal Width (cm)", 1, 2, 3, 4, 5, 6)
+# Radio buttons instead of sliders
+sepal_length = st.radio("Sepal Length (cm)", [1, 2, 3, 4, 5, 6])
+sepal_width = st.radio("Sepal Width (cm)", [1, 2, 3, 4, 5, 6])
+petal_length = st.radio("Petal Length (cm)", [1, 2, 3, 4, 5, 6])
+petal_width = st.radio("Petal Width (cm)", [1, 2, 3, 4, 5, 6])
 
 # Predict button
 if st.button("Predict"):
