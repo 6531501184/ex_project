@@ -34,7 +34,7 @@ if st.button("Predict"):
     prediction = dtm_model.predict(input_data)
 
     # Dummy labels for predicted classes (adjust as per your model)
-    music_types = ["Pop", "Rock", "Jazz", "Hip-Hop", "Classical", "Electronic"]
+    music_types = ["1", "2", "3", "4", "5", "6"]
 
     try:
         st.success(f"🎵 Recommended Music Type: **{music_types[prediction[0]]}**")
