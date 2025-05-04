@@ -14,21 +14,33 @@ with open('random_forest_model.pkl', 'rb') as f:
     dtm_model = pickle.load(f)
 
 # App title
-st.title("🌼 Music Recommendation")
-st.write("Choose your music preference:")
+st.title("🌼 Music Recommendation System")
+st.write("Choose your preferences:")
 
-# Radio buttons instead of sliders
-sepal_length = st.radio("Sepal Length (cm)", [1, 2, 3, 4, 5, 6])
-sepal_width = st.radio("Sepal Width (cm)", [1, 2, 3, 4, 5, 6])
-petal_length = st.radio("Petal Length (cm)", [1, 2, 3, 4, 5, 6])
-petal_width = st.radio("Petal Width (cm)", [1, 2, 3, 4, 5, 6])
+# Radio buttons for 6 features (adjust labels and values as needed)
+f1 = st.radio("Rhythm Preference", [1, 2, 3, 4, 5])
+f2 = st.radio("Energy Level", [1, 2, 3, 4, 5])
+f3 = st.radio("Mood", [1, 2, 3, 4, 5])
+f4 = st.radio("Tempo", [1, 2, 3, 4, 5])
+f5 = st.radio("Vocal vs. Instrumental", [1, 2, 3, 4, 5])
+f6 = st.radio("Genre Variety", [1, 2, 3, 4, 5])
 
 # Predict button
 if st.button("Predict"):
-    input_data = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
+    # Combine inputs into array
+    input_data = np.array([[f1, f2, f3, f4, f5, f6]])
+
+    # Predict using the model
     prediction = dtm_model.predict(input_data)
-    species = [1, 2, 3, 4, 5, 6]
-    st.success(f"The predicted species is: **{species[prediction[0]]}**")
+
+    # Dummy labels for predicted classes (adjust as per your model)
+    music_types = ["Pop", "Rock", "Jazz", "Hip-Hop", "Classical", "Electronic"]
+
+    try:
+        st.success(f"🎵 Recommended Music Type: **{music_types[prediction[0]]}**")
+    except IndexError:
+        st.error("Prediction index out of range. Please check your model output or labels.")
+
 
 
 
